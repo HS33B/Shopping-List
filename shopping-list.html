@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <style>
+      #head1{
+        text-align: center;
+      }
+      #mainbox{
+        justify-self: center;
+      }
+      body{
+        background-color: white;
+        
+      }
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 12px;
+        margin-left: 20px;
+        color: #666;
+      }
+      #maimg{
+        margin-left: 325px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1 id="head1">~ MY SHOPPING LIST ~</h1>
+
+    <div id="mainbox">
+      <label for="item">ENTER A NEW ITEM:</label>
+      <input type="text" name="item" id="input">
+      <button id="btn">ADD</button>
+    </div>
+    <img id="maimg" src="./../../img/Image.jpg" height="250" width="400">
+
+    <ul id="ulist">
+
+    </ul>
+
+    <script>
+      const ulist = document.querySelector("#ulist");
+      const input = document.querySelector("#input");
+      const btn = document.querySelector("#btn");
+
+      input.focus();
+      
+      btn.addEventListener("click", () => {
+        const myItem = input.value.toUpperCase();
+        if (myItem == '') {
+          return;
+        }
+        input.value = '';
+
+        const listItem = document.createElement("li");
+        const listSpan = document.createElement("span");
+        const listBtn = document.createElement("button");
+
+        listItem.appendChild(listSpan);
+        listItem.appendChild(listBtn);
+
+        listSpan.textContent = myItem;
+        listBtn.textContent = 'Delete';
+        ulist.appendChild(listItem);
+
+        listBtn.addEventListener("click", () => {
+          ulist.removeChild(listItem);
+        });
+
+        input.focus();
+      });
+
+      input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            btn.click();
+          }
+      });
+    </script>
+  </body>
+</html>
